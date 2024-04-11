@@ -35,4 +35,6 @@ class FakeAuthService implements AuthService {
 
   @override
   Stream<User> get user async* {
-    yield User(id: '123', email: '
+    yield User(id: '123', email: 'test@test.com');
+  }
+}

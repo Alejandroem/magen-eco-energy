@@ -18,6 +18,7 @@ class LoginFormNotifier extends Notifier<LoginForm> {
     return const LoginForm(
       errors: [],
       user: User(
+        id:'',
         email: "",
       ),
     );
