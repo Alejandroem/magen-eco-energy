@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'user.dart';
 
 part 'login_form.freezed.dart';
+part 'login_form.g.dart';
 
 @freezed
 class LoginForm with _$LoginForm {
