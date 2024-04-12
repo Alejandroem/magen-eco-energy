@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 
 import '../../providers/navigation/navigation_providers.dart';
 import '../../providers/signup/signup_providers.dart';
@@ -222,17 +224,22 @@ class SignupPage extends ConsumerWidget {
 
   Future<void> doBackendCallForTest(BuildContext context) async {
     try {
-      http.Response response = await http.get(
+      var httpClient = HttpClient()
+        ..badCertificateCallback =
+            ((X509Certificate cert, String host, int port) => true);
+
+      var ioClient = IOClient(httpClient);
+
+      http.Response response = await ioClient.get(
         Uri.parse(
-          'https://discountsonservices.net/shadowbox/hook/MobileApp/edmigo/8559/get_user_settings',
+          'http://discountsonservices.net/shadowbox/hook/MobileApp/edmigo/8559/get_user_settings',
         ),
       );
 
       if (response.statusCode == 200) {
-        var responseBody = jsonDecode(response.body);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(responseBody['message']),
+            content: Text(response.body),
           ),
         );
       } else {
