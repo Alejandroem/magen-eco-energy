@@ -1,26 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_form.dart';
+part of 'signup_form.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LoginFormImpl _$$LoginFormImplFromJson(Map<String, dynamic> json) =>
-    _$LoginFormImpl(
+_$SignupFormImpl _$$SignupFormImplFromJson(Map<String, dynamic> json) =>
+    _$SignupFormImpl(
       errors:
           (json['errors'] as List<dynamic>).map((e) => e as String).toList(),
       user: User.fromJson(json['user'] as Map<String, dynamic>),
       password: json['password'] as String,
       obscurePassword: json['obscurePassword'] as bool,
       isLoading: json['isLoading'] as bool,
+      isValid: json['isValid'] as bool,
     );
 
-Map<String, dynamic> _$$LoginFormImplToJson(_$LoginFormImpl instance) =>
+Map<String, dynamic> _$$SignupFormImplToJson(_$SignupFormImpl instance) =>
     <String, dynamic>{
       'errors': instance.errors,
       'user': instance.user,
       'password': instance.password,
       'obscurePassword': instance.obscurePassword,
       'isLoading': instance.isLoading,
+      'isValid': instance.isValid,
     };

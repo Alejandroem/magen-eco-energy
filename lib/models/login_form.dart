@@ -10,6 +10,9 @@ class LoginForm with _$LoginForm {
   const factory LoginForm({
     required List<String> errors,
     required User user,
+    required String password,
+    required bool obscurePassword,
+    required bool isLoading,
   }) = _LoginForm;
 
   factory LoginForm.fromJson(Map<String, Object?> json) =>

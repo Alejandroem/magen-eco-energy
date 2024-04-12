@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'login_form.dart';
+part of 'signup_form.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,43 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-LoginForm _$LoginFormFromJson(Map<String, dynamic> json) {
-  return _LoginForm.fromJson(json);
+SignupForm _$SignupFormFromJson(Map<String, dynamic> json) {
+  return _SignupForm.fromJson(json);
 }
 
 /// @nodoc
-mixin _$LoginForm {
+mixin _$SignupForm {
   List<String> get errors => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   bool get obscurePassword => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isValid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoginFormCopyWith<LoginForm> get copyWith =>
+  $SignupFormCopyWith<SignupForm> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginFormCopyWith<$Res> {
-  factory $LoginFormCopyWith(LoginForm value, $Res Function(LoginForm) then) =
-      _$LoginFormCopyWithImpl<$Res, LoginForm>;
+abstract class $SignupFormCopyWith<$Res> {
+  factory $SignupFormCopyWith(
+          SignupForm value, $Res Function(SignupForm) then) =
+      _$SignupFormCopyWithImpl<$Res, SignupForm>;
   @useResult
   $Res call(
       {List<String> errors,
       User user,
       String password,
       bool obscurePassword,
-      bool isLoading});
+      bool isLoading,
+      bool isValid});
 
   $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class _$LoginFormCopyWithImpl<$Res, $Val extends LoginForm>
-    implements $LoginFormCopyWith<$Res> {
-  _$LoginFormCopyWithImpl(this._value, this._then);
+class _$SignupFormCopyWithImpl<$Res, $Val extends SignupForm>
+    implements $SignupFormCopyWith<$Res> {
+  _$SignupFormCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -65,6 +68,7 @@ class _$LoginFormCopyWithImpl<$Res, $Val extends LoginForm>
     Object? password = null,
     Object? obscurePassword = null,
     Object? isLoading = null,
+    Object? isValid = null,
   }) {
     return _then(_value.copyWith(
       errors: null == errors
@@ -87,6 +91,10 @@ class _$LoginFormCopyWithImpl<$Res, $Val extends LoginForm>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -100,11 +108,11 @@ class _$LoginFormCopyWithImpl<$Res, $Val extends LoginForm>
 }
 
 /// @nodoc
-abstract class _$$LoginFormImplCopyWith<$Res>
-    implements $LoginFormCopyWith<$Res> {
-  factory _$$LoginFormImplCopyWith(
-          _$LoginFormImpl value, $Res Function(_$LoginFormImpl) then) =
-      __$$LoginFormImplCopyWithImpl<$Res>;
+abstract class _$$SignupFormImplCopyWith<$Res>
+    implements $SignupFormCopyWith<$Res> {
+  factory _$$SignupFormImplCopyWith(
+          _$SignupFormImpl value, $Res Function(_$SignupFormImpl) then) =
+      __$$SignupFormImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -112,18 +120,19 @@ abstract class _$$LoginFormImplCopyWith<$Res>
       User user,
       String password,
       bool obscurePassword,
-      bool isLoading});
+      bool isLoading,
+      bool isValid});
 
   @override
   $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
-class __$$LoginFormImplCopyWithImpl<$Res>
-    extends _$LoginFormCopyWithImpl<$Res, _$LoginFormImpl>
-    implements _$$LoginFormImplCopyWith<$Res> {
-  __$$LoginFormImplCopyWithImpl(
-      _$LoginFormImpl _value, $Res Function(_$LoginFormImpl) _then)
+class __$$SignupFormImplCopyWithImpl<$Res>
+    extends _$SignupFormCopyWithImpl<$Res, _$SignupFormImpl>
+    implements _$$SignupFormImplCopyWith<$Res> {
+  __$$SignupFormImplCopyWithImpl(
+      _$SignupFormImpl _value, $Res Function(_$SignupFormImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -134,8 +143,9 @@ class __$$LoginFormImplCopyWithImpl<$Res>
     Object? password = null,
     Object? obscurePassword = null,
     Object? isLoading = null,
+    Object? isValid = null,
   }) {
-    return _then(_$LoginFormImpl(
+    return _then(_$SignupFormImpl(
       errors: null == errors
           ? _value._errors
           : errors // ignore: cast_nullable_to_non_nullable
@@ -156,23 +166,28 @@ class __$$LoginFormImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isValid: null == isValid
+          ? _value.isValid
+          : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$LoginFormImpl implements _LoginForm {
-  const _$LoginFormImpl(
+class _$SignupFormImpl implements _SignupForm {
+  const _$SignupFormImpl(
       {required final List<String> errors,
       required this.user,
       required this.password,
       required this.obscurePassword,
-      required this.isLoading})
+      required this.isLoading,
+      required this.isValid})
       : _errors = errors;
 
-  factory _$LoginFormImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LoginFormImplFromJson(json);
+  factory _$SignupFormImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SignupFormImplFromJson(json);
 
   final List<String> _errors;
   @override
@@ -190,17 +205,19 @@ class _$LoginFormImpl implements _LoginForm {
   final bool obscurePassword;
   @override
   final bool isLoading;
+  @override
+  final bool isValid;
 
   @override
   String toString() {
-    return 'LoginForm(errors: $errors, user: $user, password: $password, obscurePassword: $obscurePassword, isLoading: $isLoading)';
+    return 'SignupForm(errors: $errors, user: $user, password: $password, obscurePassword: $obscurePassword, isLoading: $isLoading, isValid: $isValid)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginFormImpl &&
+            other is _$SignupFormImpl &&
             const DeepCollectionEquality().equals(other._errors, _errors) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.password, password) ||
@@ -208,7 +225,8 @@ class _$LoginFormImpl implements _LoginForm {
             (identical(other.obscurePassword, obscurePassword) ||
                 other.obscurePassword == obscurePassword) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+                other.isLoading == isLoading) &&
+            (identical(other.isValid, isValid) || other.isValid == isValid));
   }
 
   @JsonKey(ignore: true)
@@ -219,32 +237,34 @@ class _$LoginFormImpl implements _LoginForm {
       user,
       password,
       obscurePassword,
-      isLoading);
+      isLoading,
+      isValid);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginFormImplCopyWith<_$LoginFormImpl> get copyWith =>
-      __$$LoginFormImplCopyWithImpl<_$LoginFormImpl>(this, _$identity);
+  _$$SignupFormImplCopyWith<_$SignupFormImpl> get copyWith =>
+      __$$SignupFormImplCopyWithImpl<_$SignupFormImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoginFormImplToJson(
+    return _$$SignupFormImplToJson(
       this,
     );
   }
 }
 
-abstract class _LoginForm implements LoginForm {
-  const factory _LoginForm(
+abstract class _SignupForm implements SignupForm {
+  const factory _SignupForm(
       {required final List<String> errors,
       required final User user,
       required final String password,
       required final bool obscurePassword,
-      required final bool isLoading}) = _$LoginFormImpl;
+      required final bool isLoading,
+      required final bool isValid}) = _$SignupFormImpl;
 
-  factory _LoginForm.fromJson(Map<String, dynamic> json) =
-      _$LoginFormImpl.fromJson;
+  factory _SignupForm.fromJson(Map<String, dynamic> json) =
+      _$SignupFormImpl.fromJson;
 
   @override
   List<String> get errors;
@@ -257,7 +277,9 @@ abstract class _LoginForm implements LoginForm {
   @override
   bool get isLoading;
   @override
+  bool get isValid;
+  @override
   @JsonKey(ignore: true)
-  _$$LoginFormImplCopyWith<_$LoginFormImpl> get copyWith =>
+  _$$SignupFormImplCopyWith<_$SignupFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -13,14 +13,12 @@ class Home extends ConsumerWidget {
     final authState = ref.watch(authStateProvider);
 
     return MaterialApp(
-      home: Scaffold(
-        body: authState.when(
-          data: (user) {
-            return user != null ? const DashboardPage() : const LoginPage();
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stack) => Center(child: Text('Error: $error')),
-        ),
+      home: authState.when(
+        data: (user) {
+          return user != null ? const DashboardPage() : const LoginPage();
+        },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error, stack) => Center(child: Text('Error: $error')),
       ),
     );
   }

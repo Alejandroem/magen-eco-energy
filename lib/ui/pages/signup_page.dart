@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/login/login_providers.dart';
 
-class LoginPage extends ConsumerWidget {
-  const LoginPage({super.key});
+class SignupPage extends ConsumerWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -13,7 +13,7 @@ class LoginPage extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xff299400),
         title: const Text(
-          'Login Page',
+          'SignUp Page',
           style: TextStyle(
             color: Colors.white,
           ),
@@ -59,9 +59,6 @@ class LoginPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                onChanged: (value) {
-                  ref.read(loginFormProvider.notifier).setPassword(value);
-                },
               ),
               const SizedBox(height: 10),
               if (loginForm.errors.isNotEmpty)
@@ -85,7 +82,7 @@ class LoginPage extends ConsumerWidget {
                     0xff299400,
                   ),
                 ),
-                onPressed: ref.read(loginFormProvider.notifier).isValid()
+                onPressed: loginForm.isValid && !loginForm.isLoading
                     ? () {
                         ref.read(loginFormProvider.notifier).login();
                       }

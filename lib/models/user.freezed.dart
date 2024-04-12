@@ -22,6 +22,14 @@ User _$UserFromJson(Map<String, dynamic> json) {
 mixin _$User {
   String get id => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String? get fullName => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get streetAddress => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  String? get stateOrProvince => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  String? get postalCode => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +41,17 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String id, String email});
+  $Res call(
+      {String id,
+      String email,
+      String? fullName,
+      String? username,
+      String? streetAddress,
+      String? city,
+      String? stateOrProvince,
+      String? country,
+      String? postalCode,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -51,6 +69,14 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? fullName = freezed,
+    Object? username = freezed,
+    Object? streetAddress = freezed,
+    Object? city = freezed,
+    Object? stateOrProvince = freezed,
+    Object? country = freezed,
+    Object? postalCode = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -61,6 +87,38 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      streetAddress: freezed == streetAddress
+          ? _value.streetAddress
+          : streetAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stateOrProvince: freezed == stateOrProvince
+          ? _value.stateOrProvince
+          : stateOrProvince // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -72,7 +130,17 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String email});
+  $Res call(
+      {String id,
+      String email,
+      String? fullName,
+      String? username,
+      String? streetAddress,
+      String? city,
+      String? stateOrProvince,
+      String? country,
+      String? postalCode,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -87,6 +155,14 @@ class __$$UserImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? email = null,
+    Object? fullName = freezed,
+    Object? username = freezed,
+    Object? streetAddress = freezed,
+    Object? city = freezed,
+    Object? stateOrProvince = freezed,
+    Object? country = freezed,
+    Object? postalCode = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_$UserImpl(
       id: null == id
@@ -97,6 +173,38 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      fullName: freezed == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      streetAddress: freezed == streetAddress
+          ? _value.streetAddress
+          : streetAddress // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: freezed == city
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stateOrProvince: freezed == stateOrProvince
+          ? _value.stateOrProvince
+          : stateOrProvince // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      postalCode: freezed == postalCode
+          ? _value.postalCode
+          : postalCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -104,7 +212,17 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  const _$UserImpl({required this.id, required this.email});
+  const _$UserImpl(
+      {required this.id,
+      required this.email,
+      this.fullName,
+      this.username,
+      this.streetAddress,
+      this.city,
+      this.stateOrProvince,
+      this.country,
+      this.postalCode,
+      this.phoneNumber});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -113,10 +231,26 @@ class _$UserImpl implements _User {
   final String id;
   @override
   final String email;
+  @override
+  final String? fullName;
+  @override
+  final String? username;
+  @override
+  final String? streetAddress;
+  @override
+  final String? city;
+  @override
+  final String? stateOrProvince;
+  @override
+  final String? country;
+  @override
+  final String? postalCode;
+  @override
+  final String? phoneNumber;
 
   @override
   String toString() {
-    return 'User(id: $id, email: $email)';
+    return 'User(id: $id, email: $email, fullName: $fullName, username: $username, streetAddress: $streetAddress, city: $city, stateOrProvince: $stateOrProvince, country: $country, postalCode: $postalCode, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -125,12 +259,27 @@ class _$UserImpl implements _User {
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.streetAddress, streetAddress) ||
+                other.streetAddress == streetAddress) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.stateOrProvince, stateOrProvince) ||
+                other.stateOrProvince == stateOrProvince) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.postalCode, postalCode) ||
+                other.postalCode == postalCode) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email);
+  int get hashCode => Object.hash(runtimeType, id, email, fullName, username,
+      streetAddress, city, stateOrProvince, country, postalCode, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -147,8 +296,17 @@ class _$UserImpl implements _User {
 }
 
 abstract class _User implements User {
-  const factory _User({required final String id, required final String email}) =
-      _$UserImpl;
+  const factory _User(
+      {required final String id,
+      required final String email,
+      final String? fullName,
+      final String? username,
+      final String? streetAddress,
+      final String? city,
+      final String? stateOrProvince,
+      final String? country,
+      final String? postalCode,
+      final String? phoneNumber}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -156,6 +314,22 @@ abstract class _User implements User {
   String get id;
   @override
   String get email;
+  @override
+  String? get fullName;
+  @override
+  String? get username;
+  @override
+  String? get streetAddress;
+  @override
+  String? get city;
+  @override
+  String? get stateOrProvince;
+  @override
+  String? get country;
+  @override
+  String? get postalCode;
+  @override
+  String? get phoneNumber;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>
