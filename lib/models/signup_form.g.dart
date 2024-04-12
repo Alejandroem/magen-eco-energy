@@ -14,7 +14,6 @@ _$SignupFormImpl _$$SignupFormImplFromJson(Map<String, dynamic> json) =>
       password: json['password'] as String,
       obscurePassword: json['obscurePassword'] as bool,
       isLoading: json['isLoading'] as bool,
-      isValid: json['isValid'] as bool,
     );
 
 Map<String, dynamic> _$$SignupFormImplToJson(_$SignupFormImpl instance) =>
@@ -24,5 +23,4 @@ Map<String, dynamic> _$$SignupFormImplToJson(_$SignupFormImpl instance) =>
       'password': instance.password,
       'obscurePassword': instance.obscurePassword,
       'isLoading': instance.isLoading,
-      'isValid': instance.isValid,
     };

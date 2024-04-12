@@ -13,7 +13,6 @@ class SignupForm with _$SignupForm {
     required String password,
     required bool obscurePassword,
     required bool isLoading,
-    required bool isValid,
   }) = _SignupForm;
 
   factory SignupForm.fromJson(Map<String, Object?> json) =>

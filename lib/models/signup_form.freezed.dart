@@ -25,7 +25,6 @@ mixin _$SignupForm {
   String get password => throw _privateConstructorUsedError;
   bool get obscurePassword => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  bool get isValid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,8 +43,7 @@ abstract class $SignupFormCopyWith<$Res> {
       User user,
       String password,
       bool obscurePassword,
-      bool isLoading,
-      bool isValid});
+      bool isLoading});
 
   $UserCopyWith<$Res> get user;
 }
@@ -68,7 +66,6 @@ class _$SignupFormCopyWithImpl<$Res, $Val extends SignupForm>
     Object? password = null,
     Object? obscurePassword = null,
     Object? isLoading = null,
-    Object? isValid = null,
   }) {
     return _then(_value.copyWith(
       errors: null == errors
@@ -90,10 +87,6 @@ class _$SignupFormCopyWithImpl<$Res, $Val extends SignupForm>
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -120,8 +113,7 @@ abstract class _$$SignupFormImplCopyWith<$Res>
       User user,
       String password,
       bool obscurePassword,
-      bool isLoading,
-      bool isValid});
+      bool isLoading});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -143,7 +135,6 @@ class __$$SignupFormImplCopyWithImpl<$Res>
     Object? password = null,
     Object? obscurePassword = null,
     Object? isLoading = null,
-    Object? isValid = null,
   }) {
     return _then(_$SignupFormImpl(
       errors: null == errors
@@ -166,10 +157,6 @@ class __$$SignupFormImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -182,8 +169,7 @@ class _$SignupFormImpl implements _SignupForm {
       required this.user,
       required this.password,
       required this.obscurePassword,
-      required this.isLoading,
-      required this.isValid})
+      required this.isLoading})
       : _errors = errors;
 
   factory _$SignupFormImpl.fromJson(Map<String, dynamic> json) =>
@@ -205,12 +191,10 @@ class _$SignupFormImpl implements _SignupForm {
   final bool obscurePassword;
   @override
   final bool isLoading;
-  @override
-  final bool isValid;
 
   @override
   String toString() {
-    return 'SignupForm(errors: $errors, user: $user, password: $password, obscurePassword: $obscurePassword, isLoading: $isLoading, isValid: $isValid)';
+    return 'SignupForm(errors: $errors, user: $user, password: $password, obscurePassword: $obscurePassword, isLoading: $isLoading)';
   }
 
   @override
@@ -225,8 +209,7 @@ class _$SignupFormImpl implements _SignupForm {
             (identical(other.obscurePassword, obscurePassword) ||
                 other.obscurePassword == obscurePassword) &&
             (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+                other.isLoading == isLoading));
   }
 
   @JsonKey(ignore: true)
@@ -237,8 +220,7 @@ class _$SignupFormImpl implements _SignupForm {
       user,
       password,
       obscurePassword,
-      isLoading,
-      isValid);
+      isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -260,8 +242,7 @@ abstract class _SignupForm implements SignupForm {
       required final User user,
       required final String password,
       required final bool obscurePassword,
-      required final bool isLoading,
-      required final bool isValid}) = _$SignupFormImpl;
+      required final bool isLoading}) = _$SignupFormImpl;
 
   factory _SignupForm.fromJson(Map<String, dynamic> json) =
       _$SignupFormImpl.fromJson;
@@ -276,8 +257,6 @@ abstract class _SignupForm implements SignupForm {
   bool get obscurePassword;
   @override
   bool get isLoading;
-  @override
-  bool get isValid;
   @override
   @JsonKey(ignore: true)
   _$$SignupFormImplCopyWith<_$SignupFormImpl> get copyWith =>

@@ -1,13 +1,13 @@
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myapp/models/signup_form.dart';
 import 'package:myapp/models/user.dart';
 
-import '../models/login_form.dart';
 import '../providers/auth/auth_providers.dart';
 
-class LoginFormNotifier extends Notifier<LoginForm> {
-  LoginFormNotifier();
+class SignUpFormNotifier extends Notifier<SignupForm> {
+  SignUpFormNotifier();
 
   bool isValid() {
     if (state.user.email.isEmpty) {
@@ -36,6 +36,40 @@ class LoginFormNotifier extends Notifier<LoginForm> {
       log('Invalid: Password format is incorrect');
       return false;
     }
+
+    if ((state.user.fullName ?? "").isEmpty) {
+      log('Invalid: Full Name is empty');
+      return false;
+    }
+    if ((state.user.username ?? "").isEmpty) {
+      log('Invalid: Username is empty');
+      return false;
+    }
+    if ((state.user.streetAddress ?? "").isEmpty) {
+      log('Invalid: Street Address is empty');
+      return false;
+    }
+    if ((state.user.city ?? "").isEmpty) {
+      log('Invalid: City is empty');
+      return false;
+    }
+    if ((state.user.stateOrProvince ?? "").isEmpty) {
+      log('Invalid: State or Province is empty');
+      return false;
+    }
+    if ((state.user.country ?? "").isEmpty) {
+      log('Invalid: Country is empty');
+      return false;
+    }
+    if ((state.user.postalCode ?? "").isEmpty) {
+      log('Invalid: Postal Code is empty');
+      return false;
+    }
+    if ((state.user.phoneNumber ?? "").isEmpty) {
+      log('Invalid: Phone Number is empty');
+      return false;
+    }
+
     return true;
   }
 
@@ -70,9 +104,73 @@ class LoginFormNotifier extends Notifier<LoginForm> {
     );
   }
 
+  void setFullName(String fullName) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        fullName: fullName,
+      ),
+    );
+  }
+
+  void setUsername(String username) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        username: username,
+      ),
+    );
+  }
+
+  void setStreetAddress(String streetAddress) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        streetAddress: streetAddress,
+      ),
+    );
+  }
+
+  void setCity(String city) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        city: city,
+      ),
+    );
+  }
+
+  void setStateOrProvince(String stateOrProvince) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        stateOrProvince: stateOrProvince,
+      ),
+    );
+  }
+
+  void setCountry(String country) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        country: country,
+      ),
+    );
+  }
+
+  void setPostalCode(String postalCode) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        postalCode: postalCode,
+      ),
+    );
+  }
+
+  void setPhoneNumber(String phoneNumber) {
+    state = state.copyWith(
+      user: state.user.copyWith(
+        phoneNumber: phoneNumber,
+      ),
+    );
+  }
+
   @override
   build() {
-    return const LoginForm(
+    return const SignupForm(
       errors: [],
       user: User(
         id: '',
@@ -105,4 +203,6 @@ class LoginFormNotifier extends Notifier<LoginForm> {
       );
     }
   }
+
+  void signup() {}
 }

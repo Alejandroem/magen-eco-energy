@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../providers/login/login_providers.dart';
+import '../../providers/navigation/navigation_providers.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -115,7 +116,7 @@ class LoginPage extends ConsumerWidget {
               ),
               const SizedBox(height: 50),
               TextButton(
-                onPressed: () {},
+                onPressed: () => ref.read(navigationProvider).push('/signup'),
                 child: const Text(
                   'New User? Create Account',
                   style: TextStyle(
