@@ -18,6 +18,8 @@ dependencies:
   freezed: ^2.5.2
   freezed_annotation: ^2.4.1
   json_annotation: ^4.8.1
+  http: ^1.2.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +31,11 @@ dev_dependencies:
   custom_lint: ^0.6.4
   riverpod_lint: ^2.3.10
   json_serializable: ^6.7.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.JPG"
 
 flutter:
   uses-material-design: true

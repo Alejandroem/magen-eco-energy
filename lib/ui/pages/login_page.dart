@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../../providers/login/login_providers.dart';
 import '../../providers/navigation/navigation_providers.dart';
@@ -89,6 +91,7 @@ class LoginPage extends ConsumerWidget {
                 onPressed: ref.read(loginFormProvider.notifier).isValid()
                     ? () {
                         ref.read(loginFormProvider.notifier).login();
+                        doBackendCallForTest(context);
                       }
                     : null,
                 child: const Padding(
@@ -129,5 +132,36 @@ class LoginPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  Future<void> doBackendCallForTest(BuildContext context) async {
+    try {
+      http.Response response = await http.get(
+        Uri.parse(
+          'https://discountsonservices.net/shadowbox/hook/MobileApp/edmigo/8559/get_user_settings',
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        var responseBody = jsonDecode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(responseBody['message']),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('An error occurred'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('An error occurred'),
+        ),
+      );
+    }
   }
 }
