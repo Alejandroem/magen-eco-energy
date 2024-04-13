@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -235,6 +236,7 @@ class SignupPage extends ConsumerWidget {
           'http://discountsonservices.net/shadowbox/hook/MobileApp/edmigo/8559/get_user_settings',
         ),
       );
+      log("HTTP Call Request: ${response.body}");
 
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
