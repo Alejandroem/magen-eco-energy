@@ -225,15 +225,9 @@ class SignupPage extends ConsumerWidget {
 
   Future<void> doBackendCallForTest(BuildContext context) async {
     try {
-      var httpClient = HttpClient()
-        ..badCertificateCallback =
-            ((X509Certificate cert, String host, int port) => true);
-
-      var ioClient = IOClient(httpClient);
-
-      http.Response response = await ioClient.get(
+      var response = await http.get(
         Uri.parse(
-          'http://discountsonservices.net/shadowbox/hook/MobileApp/edmigo/8559/get_user_settings',
+          'https://discountsonservices.net/shadowbox/hook/MobileApp/edmigo/8559/get_user_settings',
         ),
       );
       log("HTTP Call Request: ${response.body}");
@@ -252,6 +246,7 @@ class SignupPage extends ConsumerWidget {
         );
       }
     } catch (e) {
+      log(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('An error occurred'),
