@@ -5,6 +5,7 @@ import 'package:myapp/ui/pages/signup_page.dart';
 import 'providers/auth/auth_providers.dart';
 import 'providers/navigation/navigation_providers.dart';
 import 'ui/pages/dashboard_page.dart';
+import 'ui/pages/forgot_password_page.dart';
 import 'ui/pages/login_page.dart';
 
 class Home extends ConsumerWidget {
@@ -27,6 +28,7 @@ class Home extends ConsumerWidget {
             ),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignupPage(),
+        '/forgot-password': (context) => const ForgotPasswordPage(),
       },
       home: authState.when(
         data: (user) {

@@ -74,7 +74,9 @@ class LoginPage extends ConsumerWidget {
                       loginForm.errors.map((error) => Text(error)).toList(),
                 ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(navigationProvider).push('/forgot-password');
+                },
                 child: const Text(
                   'Forgot Password?',
                   style: TextStyle(
@@ -124,7 +126,7 @@ class LoginPage extends ConsumerWidget {
               ),
               const SizedBox(height: 50),
               TextButton(
-                onPressed: () => ref.read(navigationProvider).push('/signup'),
+                onPressed: () => ref.read(navigationProvider).replaceRoot('/signup'),
                 child: const Text(
                   'New User? Create Account',
                   style: TextStyle(

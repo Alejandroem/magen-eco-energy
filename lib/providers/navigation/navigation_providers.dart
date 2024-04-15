@@ -10,6 +10,10 @@ class NavigationHandler {
     return navigatorKey.currentState!.pushNamed(routeName);
   }
 
+  void replaceRoot(String routeName) {
+    navigatorKey.currentState!.pushNamedAndRemoveUntil(routeName, (route) => false);
+  }
+
   void pop() {
     navigatorKey.currentState!.pop();
   }
