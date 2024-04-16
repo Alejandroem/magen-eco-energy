@@ -9,6 +9,12 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
+            "toolArgs": [
+                "--dart-define",
+                "ENV_NAME=Production",
+                "--dart-define",
+                "ENV_HOST=discountonservices.net",                
+            ],
             "args": [
                 
             ]

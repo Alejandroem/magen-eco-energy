@@ -1,4 +1,10 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:myapp/env.dart';
+
 import '../models/user.dart';
+import 'package:http/http.dart' as http;
 
 abstract class AuthService {
   Future<User> loginWithEmailAndPassword(String email, String password);
@@ -40,15 +46,30 @@ class FakeAuthService implements AuthService {
     await Future.delayed(const Duration(seconds: 1));
     yield null;
   }
-  
+
   @override
   Future<bool> resetPassword(String code) {
     return Future.value(true);
   }
-  
+
   @override
   Future<bool> sendRecoveryEmail(String email) async {
-    Future.delayed(const Duration(seconds: 4));
-    return true;
+    //https://discountsonservices.net/shadowbox/hook/auth/forgot/username
+    final uri = Uri(
+        host: Environment.host, path: '/shadowbox/hook/auth/forgot/username');
+    final client = http.Client();
+    final body = {"email": email};
+    final response = await client.post(
+      uri,
+      body: body,
+    );
+    log("Response ${response.toString()}");
+    if (response.statusCode == 200) {
+      final decodedBody = jsonDecode(response.body);
+      if (decodedBody["sent"] ?? false) {
+        return true;
+      }
+    }
+    return false;
   }
 }
