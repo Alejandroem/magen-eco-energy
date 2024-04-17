@@ -10,9 +10,11 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
 
   Future<void> storeToken(String token) async {
     await secureStorageService.storeToken(token);
+    state = AuthState.authenticated(token);
   }
 
   Future<void> deleteToken() async {
     await secureStorageService.deleteToken();
+    state = AuthState.initial();
   }
 }
