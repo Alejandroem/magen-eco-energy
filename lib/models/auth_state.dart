@@ -5,6 +5,8 @@ part 'auth_state.g.dart';
 
 @freezed
 class AuthState with _$AuthState {
+  const AuthState._();
+
   factory AuthState({
     required String jwt,
     required bool isAuthenticated,

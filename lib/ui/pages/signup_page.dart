@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
 
 import '../../providers/navigation/navigation_providers.dart';
 import '../../providers/signup/signup_providers.dart';
@@ -188,7 +185,6 @@ class SignupPage extends ConsumerWidget {
                   onPressed: ref.read(signupFormProvider.notifier).isValid()
                       ? () async {
                           ref.read(signupFormProvider.notifier).signup();
-                          await doBackendCallForTest(context);
                         }
                       : null,
                   child: const Padding(
@@ -221,37 +217,5 @@ class SignupPage extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  Future<void> doBackendCallForTest(BuildContext context) async {
-    try {
-      var response = await http.get(
-        Uri.parse(
-          'https://discountsonservices.net/shadowbox/hook/MobileApp/edmigo/8559/get_user_settings',
-        ),
-      );
-      log("HTTP Call Request: ${response.body}");
-
-      if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(response.body),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('An error occurred'),
-          ),
-        );
-      }
-    } catch (e) {
-      log(e.toString());
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('An error occurred'),
-        ),
-      );
-    }
   }
 }

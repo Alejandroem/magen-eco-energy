@@ -106,8 +106,9 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AuthStateImpl implements _AuthState {
-  _$AuthStateImpl({required this.jwt, required this.isAuthenticated});
+class _$AuthStateImpl extends _AuthState {
+  _$AuthStateImpl({required this.jwt, required this.isAuthenticated})
+      : super._();
 
   factory _$AuthStateImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthStateImplFromJson(json);
@@ -150,10 +151,11 @@ class _$AuthStateImpl implements _AuthState {
   }
 }
 
-abstract class _AuthState implements AuthState {
+abstract class _AuthState extends AuthState {
   factory _AuthState(
       {required final String jwt,
       required final bool isAuthenticated}) = _$AuthStateImpl;
+  _AuthState._() : super._();
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
       _$AuthStateImpl.fromJson;

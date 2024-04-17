@@ -40,8 +40,8 @@ class ForgotPasswordPage extends ConsumerWidget {
                         .read(forgotPasswordProviders.notifier)
                         .setVerificationCode(value);
                   },
-                ),
-              if (!forgotPasswordForm.verificationInProgress)
+                )
+              else
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Email',
@@ -68,34 +68,6 @@ class ForgotPasswordPage extends ConsumerWidget {
                 ...forgotPasswordForm.errors.map((e) {
                   return Text(e);
                 }),
-              if (!forgotPasswordForm.verificationInProgress)
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(
-                      0xff299400,
-                    ),
-                  ),
-                  onPressed:
-                      ref.read(forgotPasswordProviders.notifier).isEmailValid()
-                          ? () {
-                              ref
-                                  .read(forgotPasswordProviders.notifier)
-                                  .requestVerificationCode();
-                            }
-                          : null,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 50,
-                      vertical: 10,
-                    ),
-                    child: Text(
-                      'Forgot Password',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
               if (forgotPasswordForm.verificationInProgress)
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -118,6 +90,34 @@ class ForgotPasswordPage extends ConsumerWidget {
                     ),
                     child: Text(
                       'Send code',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                )
+              else
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(
+                      0xff299400,
+                    ),
+                  ),
+                  onPressed:
+                      ref.read(forgotPasswordProviders.notifier).isEmailValid()
+                          ? () {
+                              ref
+                                  .read(forgotPasswordProviders.notifier)
+                                  .requestVerificationCode();
+                            }
+                          : null,
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 50,
+                      vertical: 10,
+                    ),
+                    child: Text(
+                      'Forgot Password',
                       style: TextStyle(
                         color: Colors.white,
                       ),
