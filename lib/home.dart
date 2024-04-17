@@ -19,13 +19,12 @@ class Home extends ConsumerWidget {
     return MaterialApp(
       navigatorKey: navigator.navigatorKey,
       routes: {
-        '/home': (context) =>
+        '/': (context) =>
             authState.isLoggedIn ? const DashboardPage() : const LoginPage(),
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignupPage(),
         '/forgot-password': (context) => const ForgotPasswordPage(),
       },
-      home: authState.isLoggedIn ? const DashboardPage() : const LoginPage(),
     );
   }
 }
