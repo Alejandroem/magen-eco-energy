@@ -49,7 +49,7 @@ class ShadowboxAuthService implements AuthService {
   Future<String> signUpWithEmailAndPassword(User user, String password) async {
     // /shadowbox/hook/auth/signup/username
     final uri = Uri(
-        host: Environment.host, path: '/shadowbox/hook/auth/login/username');
+        host: Environment.host, path: 'shadowbox/hook/auth/signup/username');
     final client = http.Client();
     final body = {
       {
