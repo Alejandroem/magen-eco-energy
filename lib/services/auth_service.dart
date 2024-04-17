@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
@@ -7,33 +8,76 @@ import '../models/user.dart';
 import 'package:http/http.dart' as http;
 
 abstract class AuthService {
-  Future<User> loginWithEmailAndPassword(String email, String password);
-  Future<User> signUpWithEmailAndPassword(String email, String password);
+  Future<String> loginWithEmailAndPassword(String email, String password);
+  Future<String> signUpWithEmailAndPassword(User user, String password);
+  Future<bool> updatePassword(String password);
   Future<bool> sendRecoveryEmail(String email);
-  Future<bool> resetPassword(String code);
+  Future<String> resetPassword(String code);
   Future<void> signOut();
-  Stream<User?> get user;
 }
 
-class FakeAuthService implements AuthService {
-  FakeAuthService();
+class ShadowboxAuthService implements AuthService {
+  ShadowboxAuthService();
 
   @override
-  Future<User> loginWithEmailAndPassword(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 1));
-    return User(
-      id: '123',
-      email: email,
+  Future<String> loginWithEmailAndPassword(
+      String email, String password) async {
+    // /shadowbox/hook/auth/login/username
+    final uri = Uri(
+        host: Environment.host, path: '/shadowbox/hook/auth/login/username');
+    final client = http.Client();
+    final body = {
+      "email": email,
+      "password": password,
+    };
+    final response = await client.post(
+      uri,
+      body: body,
     );
+    log("Response ${response.toString()}");
+    if (response.statusCode == 200) {
+      final decodedBody = jsonDecode(response.body);
+      final jwt = (decodedBody["jwt"] ?? "") as String;
+      if (jwt.isNotEmpty) {
+        return jwt;
+      }
+    }
+    throw Exception("Something went wrong while login in");
   }
 
   @override
-  Future<User> signUpWithEmailAndPassword(String email, String password) async {
-    await Future.delayed(const Duration(seconds: 1));
-    return User(
-      id: '123',
-      email: email,
+  Future<String> signUpWithEmailAndPassword(User user, String password) async {
+    // /shadowbox/hook/auth/signup/username
+    final uri = Uri(
+        host: Environment.host, path: '/shadowbox/hook/auth/login/username');
+    final client = http.Client();
+    final body = {
+      {
+        'fullname': user.fullName,
+        'userID': user.username,
+        'password': password,
+        'email': user.email,
+        'street': user.streetAddress,
+        'city': user.city,
+        'state': user.stateOrProvince,
+        'country': user.country,
+        'zipcode': user.postalCode,
+        'phone': user.phoneNumber,
+      }
+    };
+    final response = await client.post(
+      uri,
+      body: body,
     );
+    log("Response ${response.toString()}");
+    if (response.statusCode == 200) {
+      final decodedBody = jsonDecode(response.body);
+      final jwt = (decodedBody["jwt"] ?? "") as String;
+      if (jwt.isNotEmpty) {
+        return jwt;
+      }
+    }
+    throw Exception("Something went wrong while signing up");
   }
 
   @override
@@ -42,14 +86,25 @@ class FakeAuthService implements AuthService {
   }
 
   @override
-  Stream<User?> get user async* {
-    await Future.delayed(const Duration(seconds: 1));
-    yield null;
-  }
-
-  @override
-  Future<bool> resetPassword(String code) {
-    return Future.value(true);
+  Future<String> resetPassword(String code) async {
+    ///shadowbox/hook/auth/otp/usermane
+    final uri =
+        Uri(host: Environment.host, path: '/shadowbox/hook/auth/otp/usermane');
+    final client = http.Client();
+    final body = {"code": code};
+    final response = await client.post(
+      uri,
+      body: body,
+    );
+    log("Response ${response.toString()}");
+    if (response.statusCode == 200) {
+      final decodedBody = jsonDecode(response.body);
+      final jwt = (decodedBody["jwt"] ?? "") as String;
+      if (jwt.isNotEmpty) {
+        return jwt;
+      }
+    }
+    throw Exception("Something went wrong while reseting password");
   }
 
   @override
@@ -59,6 +114,29 @@ class FakeAuthService implements AuthService {
         host: Environment.host, path: '/shadowbox/hook/auth/forgot/username');
     final client = http.Client();
     final body = {"email": email};
+    final response = await client.post(
+      uri,
+      body: body,
+    );
+    log("Response ${response.toString()}");
+    if (response.statusCode == 200) {
+      final decodedBody = jsonDecode(response.body);
+      if (decodedBody["sent"] ?? false) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @override
+  Future<bool> updatePassword(String password) async {
+    //https://discountsonservices.net/shadowbox/hook/auth/forgot/username
+    final uri = Uri(
+        host: Environment.host, path: '/shadowbox/hook/auth/password/username');
+    final client = http.Client();
+    final body = {
+      "password": password,
+    };
     final response = await client.post(
       uri,
       body: body,

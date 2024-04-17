@@ -188,12 +188,12 @@ class SignUpFormNotifier extends Notifier<SignupForm> {
     );
     try {
       final authService = ref.read(authServiceProvider);
-      final user = await authService.loginWithEmailAndPassword(
+      final jwt = await authService.loginWithEmailAndPassword(
         state.user.email,
         state.password,
       );
+      ref.read(authStateProvider.notifier).storeToken(jwt);
       state = state.copyWith(
-        user: user,
         isLoading: false,
       );
     } catch (e) {

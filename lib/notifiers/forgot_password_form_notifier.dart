@@ -56,7 +56,7 @@ class ForgotPasswordFormNotifier extends Notifier<ForgotPasswordForm> {
       // Start timer
       _codeTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
         int minutes = currentSeconds ~/ 60;
-        int seconds = currentSeconds % 60;  
+        int seconds = currentSeconds % 60;
         String minutesText = minutes.toString().padLeft(2, '0');
         String secondsText = seconds.toString().padLeft(2, '0');
         state = state.copyWith(
@@ -90,8 +90,9 @@ class ForgotPasswordFormNotifier extends Notifier<ForgotPasswordForm> {
 
   Future<bool> validateVerificationCode() async {
     final authService = ref.read(authServiceProvider);
-    final canReset = await authService.resetPassword(state.code!);
-    return canReset;
+    final jwt = await authService.resetPassword(state.code!);
+    ref.read(authStateProvider.notifier).storeToken(jwt);
+    return true;
   }
 
   void setEmail(String email) {
