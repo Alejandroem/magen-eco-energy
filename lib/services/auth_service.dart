@@ -24,7 +24,10 @@ class ShadowboxAuthService implements AuthService {
       String email, String password) async {
     // /shadowbox/hook/auth/login/username
     final uri = Uri(
-        host: Environment.host, path: '/shadowbox/hook/auth/login/username');
+      scheme: Environment.scheme,
+      host: Environment.host,
+      path: '/shadowbox/hook/auth/login/username',
+    );
     final client = http.Client();
     final body = {
       "email": email,
@@ -49,7 +52,10 @@ class ShadowboxAuthService implements AuthService {
   Future<String> signUpWithEmailAndPassword(User user, String password) async {
     // /shadowbox/hook/auth/signup/username
     final uri = Uri(
-        host: Environment.host, path: 'shadowbox/hook/auth/signup/username');
+      scheme: Environment.scheme,
+      host: Environment.host,
+      path: 'shadowbox/hook/auth/signup/username',
+    );
     final client = http.Client();
     final body = {
       {
@@ -88,8 +94,11 @@ class ShadowboxAuthService implements AuthService {
   @override
   Future<String> resetPassword(String code) async {
     ///shadowbox/hook/auth/otp/usermane
-    final uri =
-        Uri(host: Environment.host, path: '/shadowbox/hook/auth/otp/usermane');
+    final uri = Uri(
+      scheme: Environment.scheme,
+      host: Environment.host,
+      path: '/shadowbox/hook/auth/otp/usermane',
+    );
     final client = http.Client();
     final body = {"code": code};
     final response = await client.post(
@@ -111,7 +120,10 @@ class ShadowboxAuthService implements AuthService {
   Future<bool> sendRecoveryEmail(String email) async {
     //https://discountsonservices.net/shadowbox/hook/auth/forgot/username
     final uri = Uri(
-        host: Environment.host, path: '/shadowbox/hook/auth/forgot/username');
+      scheme: Environment.scheme,
+      host: Environment.host,
+      path: '/shadowbox/hook/auth/forgot/username',
+    );
     final client = http.Client();
     final body = {"email": email};
     final response = await client.post(
@@ -132,7 +144,10 @@ class ShadowboxAuthService implements AuthService {
   Future<bool> updatePassword(String password) async {
     //https://discountsonservices.net/shadowbox/hook/auth/forgot/username
     final uri = Uri(
-        host: Environment.host, path: '/shadowbox/hook/auth/password/username');
+      scheme: Environment.scheme,
+      host: Environment.host,
+      path: '/shadowbox/hook/auth/password/username',
+    );
     final client = http.Client();
     final body = {
       "password": password,

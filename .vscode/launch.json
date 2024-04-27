@@ -10,10 +10,13 @@
             "type": "dart",
             "program": "lib/main.dart",
             "toolArgs": [
+                
                 "--dart-define",
                 "ENV_NAME=Development",
+                "--dart-define",                
+                "ENV_SCHEMA=http",
                 "--dart-define",
-                "ENV_HOST=http://localhost:3000",                
+                "ENV_HOST=localhost:3000",                
             ],
             "args": [
                 
@@ -28,7 +31,9 @@
                 "--dart-define",
                 "ENV_NAME=Production",
                 "--dart-define",
-                "ENV_HOST=https://discountonservices.net",                
+                "ENV_SCHEMA=https",
+                "--dart-define",
+                "ENV_HOST=discountonservices.net",                
             ],
             "args": [
                 
