@@ -16,7 +16,7 @@
                 "--dart-define",                
                 "ENV_SCHEMA=http",
                 "--dart-define",
-                "ENV_HOST=localhost:3000",                
+                "ENV_HOST=127.0.0.1:3000",                
             ],
             "args": [
                 

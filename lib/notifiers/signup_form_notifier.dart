@@ -204,5 +204,25 @@ class SignUpFormNotifier extends Notifier<SignupForm> {
     }
   }
 
-  void signup() {}
+  void signup() async {
+    state = state.copyWith(
+      isLoading: true,
+    );
+    try {
+      final authService = ref.read(authServiceProvider);
+      final jwt = await authService.signUpWithEmailAndPassword(
+        state.user,
+        state.password,
+      );
+      ref.read(authStateProvider.notifier).storeToken(jwt);
+      state = state.copyWith(
+        isLoading: false,
+      );
+    } catch (e) {
+      state = state.copyWith(
+        errors: ['Invalid email or password'],
+        isLoading: false,
+      );
+    }
+  }
 }
