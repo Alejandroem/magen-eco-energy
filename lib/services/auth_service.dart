@@ -105,7 +105,7 @@ class ShadowboxAuthService implements AuthService {
     );
     log("Response ${response.toString()}");
     if (response.statusCode == 200) {
-      final decodedBody = jsonDecode(response.body);
+      final decodedBody = jsonDecode(response.body.replaceAll("'", "\""));
       final jwt = (decodedBody["jwt"] ?? "") as String;
       if (jwt.isNotEmpty) {
         return jwt;
@@ -130,8 +130,8 @@ class ShadowboxAuthService implements AuthService {
     );
     log("Response ${response.toString()}");
     if (response.statusCode == 200) {
-      final decodedBody = jsonDecode(response.body);
-      if (decodedBody["sent"] ?? false) {
+      final decodedBody = jsonDecode(response.body.replaceAll("'", "\""));
+      if (bool.tryParse(decodedBody["sent"]) ?? false) {
         return true;
       }
     }
@@ -156,7 +156,7 @@ class ShadowboxAuthService implements AuthService {
     );
     log("Response ${response.toString()}");
     if (response.statusCode == 200) {
-      final decodedBody = jsonDecode(response.body);
+      final decodedBody = jsonDecode(response.body.replaceAll("'", "\""));
       if (decodedBody["sent"] ?? false) {
         return true;
       }

@@ -35,10 +35,9 @@ class ForgotPasswordFormNotifier extends Notifier<ForgotPasswordForm> {
 
   bool isCodeValid() {
     if (state.code != null && state.code!.isNotEmpty) {
-      log("Invalid: form contains errors");
-      return false;
+      return true;
     }
-    return true;
+    return false;
   }
 
   Future<void> requestVerificationCode() async {
