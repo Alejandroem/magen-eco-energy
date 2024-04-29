@@ -39,7 +39,7 @@ class ShadowboxAuthService implements AuthService {
     );
     log("Response ${response.toString()}");
     if (response.statusCode == 200) {
-      final decodedBody = jsonDecode(response.body);
+      final decodedBody = jsonDecode(response.body.replaceAll("'", "\""));
       final jwt = (decodedBody["jwt"] ?? "") as String;
       if (jwt.isNotEmpty) {
         return jwt;
@@ -58,18 +58,16 @@ class ShadowboxAuthService implements AuthService {
     );
     final client = http.Client();
     final body = {
-      {
-        'fullname': user.fullName,
-        'userID': user.username,
-        'password': password,
-        'email': user.email,
-        'street': user.streetAddress,
-        'city': user.city,
-        'state': user.stateOrProvince,
-        'country': user.country,
-        'zipcode': user.postalCode,
-        'phone': user.phoneNumber,
-      }
+      'fullname': user.fullName,
+      'userID': user.username,
+      'password': password,
+      'email': user.email,
+      'street': user.streetAddress,
+      'city': user.city,
+      'state': user.stateOrProvince,
+      'country': user.country,
+      'zipcode': user.postalCode,
+      'phone': user.phoneNumber,
     };
     final response = await client.post(
       uri,
@@ -77,7 +75,7 @@ class ShadowboxAuthService implements AuthService {
     );
     log("Response ${response.toString()}");
     if (response.statusCode == 200) {
-      final decodedBody = jsonDecode(response.body);
+      final decodedBody = jsonDecode(response.body.replaceAll("'", "\""));
       final jwt = (decodedBody["jwt"] ?? "") as String;
       if (jwt.isNotEmpty) {
         return jwt;

@@ -13,14 +13,36 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authStateProvider);
     final navigator = ref.watch(navigationProvider);
+
+    ref.listen(authStateProvider, (oldState, newState) {
+      //Loged out to logued in
+      if (!(oldState?.isLoggedIn ?? false) && (newState.isLoggedIn)) {
+        navigator.replaceRoot("/");
+      }
+      //loged in to loggued out
+      if ((oldState?.isLoggedIn ?? false) && (!newState.isLoggedIn)) {
+        navigator.replaceRoot("/");
+      }
+    });
 
     return MaterialApp(
       navigatorKey: navigator.navigatorKey,
       routes: {
-        '/': (context) =>
-            authState.isLoggedIn ? const DashboardPage() : const LoginPage(),
+        '/': (context) {
+          final authState = ref.watch(authStateProvider);
+          if (authState.isLoading) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else if (authState.isLoggedIn) {
+            return const DashboardPage();
+          } else {
+            return const LoginPage();
+          }
+        },
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignupPage(),
         '/forgot-password': (context) => const ForgotPasswordPage(),

@@ -22,6 +22,7 @@ AuthState _$AuthStateFromJson(Map<String, dynamic> json) {
 mixin _$AuthState {
   String get jwt => throw _privateConstructorUsedError;
   bool get isAuthenticated => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({String jwt, bool isAuthenticated});
+  $Res call({String jwt, bool isAuthenticated, bool isLoading});
 }
 
 /// @nodoc
@@ -52,6 +53,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? jwt = null,
     Object? isAuthenticated = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
       jwt: null == jwt
@@ -61,6 +63,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       isAuthenticated: null == isAuthenticated
           ? _value.isAuthenticated
           : isAuthenticated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -74,7 +80,7 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       __$$AuthStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String jwt, bool isAuthenticated});
+  $Res call({String jwt, bool isAuthenticated, bool isLoading});
 }
 
 /// @nodoc
@@ -90,6 +96,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   $Res call({
     Object? jwt = null,
     Object? isAuthenticated = null,
+    Object? isLoading = null,
   }) {
     return _then(_$AuthStateImpl(
       jwt: null == jwt
@@ -100,6 +107,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.isAuthenticated
           : isAuthenticated // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -107,7 +118,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AuthStateImpl extends _AuthState {
-  _$AuthStateImpl({required this.jwt, required this.isAuthenticated})
+  _$AuthStateImpl(
+      {required this.jwt,
+      required this.isAuthenticated,
+      required this.isLoading})
       : super._();
 
   factory _$AuthStateImpl.fromJson(Map<String, dynamic> json) =>
@@ -117,10 +131,12 @@ class _$AuthStateImpl extends _AuthState {
   final String jwt;
   @override
   final bool isAuthenticated;
+  @override
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'AuthState(jwt: $jwt, isAuthenticated: $isAuthenticated)';
+    return 'AuthState(jwt: $jwt, isAuthenticated: $isAuthenticated, isLoading: $isLoading)';
   }
 
   @override
@@ -130,12 +146,14 @@ class _$AuthStateImpl extends _AuthState {
             other is _$AuthStateImpl &&
             (identical(other.jwt, jwt) || other.jwt == jwt) &&
             (identical(other.isAuthenticated, isAuthenticated) ||
-                other.isAuthenticated == isAuthenticated));
+                other.isAuthenticated == isAuthenticated) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, jwt, isAuthenticated);
+  int get hashCode => Object.hash(runtimeType, jwt, isAuthenticated, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +172,8 @@ class _$AuthStateImpl extends _AuthState {
 abstract class _AuthState extends AuthState {
   factory _AuthState(
       {required final String jwt,
-      required final bool isAuthenticated}) = _$AuthStateImpl;
+      required final bool isAuthenticated,
+      required final bool isLoading}) = _$AuthStateImpl;
   _AuthState._() : super._();
 
   factory _AuthState.fromJson(Map<String, dynamic> json) =
@@ -164,6 +183,8 @@ abstract class _AuthState extends AuthState {
   String get jwt;
   @override
   bool get isAuthenticated;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$AuthStateImplCopyWith<_$AuthStateImpl> get copyWith =>

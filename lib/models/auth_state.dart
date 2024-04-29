@@ -10,6 +10,7 @@ class AuthState with _$AuthState {
   factory AuthState({
     required String jwt,
     required bool isAuthenticated,
+    required bool isLoading,
   }) = _AuthState;
 
   factory AuthState.fromJson(Map<String, Object?> json) =>
@@ -18,11 +19,19 @@ class AuthState with _$AuthState {
   factory AuthState.initial() => AuthState(
         jwt: '',
         isAuthenticated: false,
+        isLoading: false,
       );
 
   factory AuthState.authenticated(String token) => AuthState(
         jwt: token,
         isAuthenticated: true,
+        isLoading: false,
+      );
+
+  factory AuthState.loading() => AuthState(
+        jwt: '',
+        isAuthenticated: false,
+        isLoading: true,
       );
 
   bool get isLoggedIn => isAuthenticated && jwt.isNotEmpty;
