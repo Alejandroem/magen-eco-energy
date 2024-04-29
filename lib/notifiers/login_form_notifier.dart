@@ -99,6 +99,7 @@ class LoginFormNotifier extends Notifier<LoginForm> {
         isLoading: false,
       );
     } catch (e) {
+      log(e.toString());
       state = state.copyWith(
         errors: ['Invalid email or password'],
         isLoading: false,
