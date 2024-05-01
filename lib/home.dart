@@ -7,6 +7,7 @@ import 'providers/navigation/navigation_providers.dart';
 import 'ui/pages/dashboard_page.dart';
 import 'ui/pages/forgot_password_page.dart';
 import 'ui/pages/login_page.dart';
+import 'ui/pages/update_password_page.dart';
 
 class Home extends ConsumerWidget {
   const Home({super.key});
@@ -37,6 +38,8 @@ class Home extends ConsumerWidget {
                 child: CircularProgressIndicator(),
               ),
             );
+          } else if (authState.needsToUpdatePassword) {
+            return const UpdatePasswordPage();
           } else if (authState.isLoggedIn) {
             return const DashboardPage();
           } else {
@@ -46,6 +49,7 @@ class Home extends ConsumerWidget {
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignupPage(),
         '/forgot-password': (context) => const ForgotPasswordPage(),
+        '/update-password': (context) => const UpdatePasswordPage(),
       },
     );
   }

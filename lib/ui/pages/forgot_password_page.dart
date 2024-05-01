@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myapp/providers/forgot_password/forgot_password_providers.dart';
 
@@ -29,8 +30,9 @@ class ForgotPasswordPage extends ConsumerWidget {
                 width: 200,
                 height: 200,
               ),
-              if (forgotPasswordForm.verificationInProgress)
-                TextFormField(
+              Visibility(
+                visible: forgotPasswordForm.verificationInProgress,
+                child: TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Code',
                     border: OutlineInputBorder(),
@@ -40,9 +42,11 @@ class ForgotPasswordPage extends ConsumerWidget {
                         .read(forgotPasswordProviders.notifier)
                         .setVerificationCode(value);
                   },
-                )
-              else
-                TextFormField(
+                ),
+              ),
+              Visibility(
+                visible: !forgotPasswordForm.verificationInProgress,
+                child: TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
@@ -51,6 +55,7 @@ class ForgotPasswordPage extends ConsumerWidget {
                     ref.read(forgotPasswordProviders.notifier).setEmail(value);
                   },
                 ),
+              ),
               if (!forgotPasswordForm.verificationInProgress)
                 const SizedBox(height: 20),
               if (!forgotPasswordForm.verificationInProgress)

@@ -90,7 +90,7 @@ class ForgotPasswordFormNotifier extends Notifier<ForgotPasswordForm> {
   Future<bool> validateVerificationCode() async {
     final authService = ref.read(authServiceProvider);
     final jwt = await authService.resetPassword(state.code!);
-    ref.read(authStateProvider.notifier).storeToken(jwt);
+    ref.read(authStateProvider.notifier).storeTokenAndPrepareForReset(jwt);
     return true;
   }
 

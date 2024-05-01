@@ -4,6 +4,8 @@ abstract class SecureStorageService {
   Future<void> storeToken(String token);
   Future<String?> getToken();
   Future<void> deleteToken();
+  Future<bool> needsReset();
+  Future<void> setReset(bool value);
 }
 
 class FlutterSecureStorageService extends SecureStorageService {
@@ -22,5 +24,17 @@ class FlutterSecureStorageService extends SecureStorageService {
   @override
   Future<void> deleteToken() async {
     await _storage.delete(key: 'jwt_token');
+  }
+
+  @override
+  Future<void> setReset(bool value) async {
+    await _storage.write(key: 'reset_password', value: value.toString());
+  }
+
+  @override
+  Future<bool> needsReset() {
+    return _storage.read(key: 'reset_password').then((value) {
+      return value == 'true';
+    });
   }
 }

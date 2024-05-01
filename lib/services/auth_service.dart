@@ -157,7 +157,7 @@ class ShadowboxAuthService implements AuthService {
     log("Response ${response.toString()}");
     if (response.statusCode == 200) {
       final decodedBody = jsonDecode(response.body.replaceAll("'", "\""));
-      if (decodedBody["sent"] ?? false) {
+      if (bool.tryParse(decodedBody["sent"]) ?? false) {
         return true;
       }
     }

@@ -12,3 +12,5 @@ final authServiceProvider = Provider<AuthService>((ref) {
 final authStateProvider = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
   return AuthStateNotifier(ref.read(secureStorageProvider));
 });
+
+

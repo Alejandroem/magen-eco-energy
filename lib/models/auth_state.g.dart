@@ -11,6 +11,7 @@ _$AuthStateImpl _$$AuthStateImplFromJson(Map<String, dynamic> json) =>
       jwt: json['jwt'] as String,
       isAuthenticated: json['isAuthenticated'] as bool,
       isLoading: json['isLoading'] as bool,
+      resetPasswordPending: json['resetPasswordPending'] as bool,
     );
 
 Map<String, dynamic> _$$AuthStateImplToJson(_$AuthStateImpl instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$AuthStateImplToJson(_$AuthStateImpl instance) =>
       'jwt': instance.jwt,
       'isAuthenticated': instance.isAuthenticated,
       'isLoading': instance.isLoading,
+      'resetPasswordPending': instance.resetPasswordPending,
     };

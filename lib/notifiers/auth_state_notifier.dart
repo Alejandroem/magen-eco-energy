@@ -11,18 +11,32 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
           //Loading is the entry point
           AuthState.loading(),
         ) {
-    secureStorageService.getToken().then((token) {
-      //Token exist
-      if (token != null && token.isNotEmpty) {
-        state = AuthState.authenticated(token);
+    intializeAuthentication();
+  }
+
+  Future<void> intializeAuthentication() async {
+    final token = await secureStorageService.getToken();
+    final needsReset = await secureStorageService.needsReset();
+    if (token != null && token.isNotEmpty) {
+      if (needsReset) {
+        state = AuthState.authWithResetPassword(token);
       } else {
-        //token doesnt exist
-        state = AuthState.initial();
+        state = AuthState.authenticated(token);
       }
-    }, onError: (_) {
-      //something went wrong
+    } else {
       state = AuthState.initial();
-    });
+    }
+  }
+
+  Future<void> storeTokenAndPrepareForReset(String token) async {
+    await secureStorageService.storeToken(token);
+    await secureStorageService.setReset(true);
+    state = AuthState.authWithResetPassword(token);
+  }
+
+  Future<void> passwordResetComplete() async {
+    await secureStorageService.setReset(false);
+    state = AuthState.authenticated(state.jwt);
   }
 
   Future<void> storeToken(String token) async {
